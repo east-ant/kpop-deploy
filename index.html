@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>K-POP 소개 | Korean Wave</title>
+  <meta name="description" content="K-POP의 세계로 오신 것을 환영합니다. 한국 팝 음악의 역사, 특징, 대표 아티스트를 소개합니다." />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue1: #2563eb;
+      --blue2: #3b82f6;
+      --indigo: #6366f1;
+      --cyan: #06b6d4;
+      --violet: #7c3aed;
+      --glass-bg: rgba(255, 255, 255, 0.22);
+      --glass-border: rgba(255, 255, 255, 0.55);
+      --glass-shadow: rgba(80, 120, 255, 0.18);
+      --text-dark: #1e2a4a;
+      --text-mid: #3b4a72;
+      --text-light: #6b7ea8;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: linear-gradient(135deg, #c7d9ff 0%, #a5c8ff 20%, #b8e0ff 40%, #d0ecff 55%, #e2d9ff 70%, #f0d6ff 85%, #ffd6ec 100%);
+      min-height: 100vh;
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    /* ── 배경 구체 (밝고 선명하게) ── */
+    .bg-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+      z-index: 0;
+      animation: float 9s ease-in-out infinite;
+    }
+    .bg-orb.o1 { width: 600px; height: 600px; background: rgba(99,102,241,0.35); top: -150px; left: -150px; }
+    .bg-orb.o2 { width: 500px; height: 500px; background: rgba(59,130,246,0.3); bottom: 5%; right: -100px; animation-delay: 3s; }
+    .bg-orb.o3 { width: 400px; height: 400px; background: rgba(168,85,247,0.25); top: 45%; left: 38%; animation-delay: 1.5s; }
+    .bg-orb.o4 { width: 350px; height: 350px; background: rgba(6,182,212,0.22); top: 20%; right: 10%; animation-delay: 4.5s; }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0) scale(1); }
+      50%      { transform: translateY(-28px) scale(1.04); }
+    }
+
+    /* ── 두꺼운 글래스 믹스인 ── */
+    .glass {
+      background: var(--glass-bg);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      border: 1.5px solid var(--glass-border);
+      box-shadow: 0 8px 40px var(--glass-shadow), inset 0 1px 0 rgba(255,255,255,0.7);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* 태극기 */
+    .flag-container {
+      margin-bottom: 2rem;
+      animation: fadeDown .7s ease both;
+    }
+    .flag-container img {
+      width: 110px;
+      height: auto;
+      border-radius: .8rem;
+      border: 2px solid var(--glass-border);
+      box-shadow: 0 8px 32px rgba(80,120,255,.25), inset 0 1px 0 rgba(255,255,255,.6);
+      filter: drop-shadow(0 4px 16px rgba(59,130,246,.3));
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.45);
+      backdrop-filter: blur(20px);
+      border: 1.5px solid rgba(255,255,255,0.7);
+      color: var(--blue1);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      padding: .45rem 1.3rem;
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 16px rgba(80,120,255,.15), inset 0 1px 0 rgba(255,255,255,.8);
+      animation: fadeDown .7s .05s ease both;
+    }
+
+    .hero h1 {
+      font-size: clamp(4rem, 14vw, 9rem);
+      font-weight: 900;
+      line-height: 1;
+      background: linear-gradient(135deg, #1d4ed8 0%, #4f46e5 40%, #7c3aed 70%, #06b6d4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fadeDown .7s .1s ease both;
+      filter: drop-shadow(0 2px 24px rgba(79,70,229,.25));
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: .28em;
+      color: var(--indigo);
+      margin-top: .7rem;
+      animation: fadeDown .7s .17s ease both;
+    }
+
+    /* 히어로 설명 글래스 박스 */
+    .hero-desc {
+      margin: 2rem auto 0;
+      max-width: 540px;
+      padding: 1.6rem 2rem;
+      border-radius: 1.5rem;
+      animation: fadeDown .7s .24s ease both;
+    }
+    .hero-desc p {
+      font-size: 1.05rem;
+      color: var(--text-mid);
+      line-height: 1.8;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+      animation: fadeDown .7s .32s ease both;
+    }
+
+    .btn-primary {
+      padding: .85rem 2.2rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--blue1), var(--indigo));
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 4px 24px rgba(99,102,241,.45), inset 0 1px 0 rgba(255,255,255,.25);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-primary:hover { transform: translateY(-4px); box-shadow: 0 8px 40px rgba(99,102,241,.6); }
+
+    .btn-outline {
+      padding: .85rem 2.2rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.35);
+      backdrop-filter: blur(20px);
+      border: 1.5px solid rgba(255,255,255,.65);
+      color: var(--blue1);
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(80,120,255,.12), inset 0 1px 0 rgba(255,255,255,.7);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-outline:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(80,120,255,.25); }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .4rem;
+      color: var(--indigo);
+      font-size: .7rem;
+      letter-spacing: .15em;
+      opacity: .7;
+      animation: bounce 2s infinite;
+    }
+    .scroll-hint::after {
+      content: '';
+      display: block;
+      width: 1.5px;
+      height: 38px;
+      background: linear-gradient(to bottom, var(--indigo), transparent);
+      border-radius: 999px;
+    }
+    @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(7px)} }
+
+    /* ── SECTION COMMON ── */
+    section { padding: 6rem 2rem; position: relative; z-index: 1; }
+    .section-label {
+      text-align: center;
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--indigo);
+      margin-bottom: .7rem;
+    }
+    .section-title {
+      text-align: center;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      margin-bottom: 3.5rem;
+      color: var(--text-dark);
+    }
+    .section-title span {
+      background: linear-gradient(135deg, var(--blue1), var(--indigo), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── ABOUT ── */
+    .about { background: transparent; }
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .about-card {
+      border-radius: 1.8rem;
+      padding: 2.4rem 2rem;
+      text-align: center;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .about-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 24px 72px rgba(80,120,255,.25), inset 0 1px 0 rgba(255,255,255,.8);
+    }
+    .about-card .icon { font-size: 3rem; margin-bottom: 1.2rem; display: block; }
+    .about-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: .6rem; color: var(--blue1); }
+    .about-card p { font-size: .9rem; color: var(--text-mid); line-height: 1.75; }
+
+    /* ── STATS ── */
+    .stats-section { background: transparent; padding: 3rem 2rem; }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .stat-item {
+      border-radius: 1.5rem;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: transform .3s;
+    }
+    .stat-item:hover { transform: translateY(-6px); }
+    .stat-item .num {
+      font-size: 2.8rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--blue1), var(--indigo));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
+    .stat-item .label { font-size: .85rem; color: var(--text-light); margin-top: .6rem; font-weight: 500; }
+
+    /* ── ARTISTS ── */
+    .artists { background: transparent; }
+    .artist-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .artist-card {
+      border-radius: 1.8rem;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .artist-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 28px 72px rgba(80,120,255,.3), inset 0 1px 0 rgba(255,255,255,.8);
+    }
+    .artist-card .card-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      transition: transform .4s ease;
+    }
+    .artist-card:hover .card-img { transform: scale(1.06); }
+    .artist-card .img-wrap {
+      overflow: hidden;
+      height: 200px;
+      position: relative;
+    }
+    .artist-card .img-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 50%, rgba(99,102,241,.18) 100%);
+    }
+    .artist-card .info { padding: 1.3rem 1.3rem 1.6rem; }
+    .artist-card .info h3 { font-size: 1.05rem; font-weight: 700; color: var(--text-dark); }
+    .artist-card .info p { font-size: .78rem; color: var(--text-light); margin-top: .25rem; }
+    .artist-card .tag {
+      display: inline-block;
+      margin-top: .6rem;
+      font-size: .7rem;
+      font-weight: 700;
+      padding: .22rem .75rem;
+      border-radius: 999px;
+      background: rgba(99,102,241,.12);
+      border: 1px solid rgba(99,102,241,.3);
+      color: var(--indigo);
+    }
+
+    /* ── TIMELINE ── */
+    .timeline-section { background: transparent; }
+    .timeline {
+      max-width: 680px;
+      margin: 0 auto;
+      position: relative;
+      padding-left: 2.5rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--cyan), var(--blue1), var(--indigo), var(--violet));
+      border-radius: 999px;
+    }
+    .tl-item {
+      position: relative;
+      margin-bottom: 2rem;
+      border-radius: 1.5rem;
+      padding: 1.6rem 1.8rem;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .tl-item:hover {
+      transform: translateX(8px);
+      box-shadow: 0 20px 60px rgba(80,120,255,.22), inset 0 1px 0 rgba(255,255,255,.8);
+    }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -2.95rem;
+      top: 1.5rem;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue1), var(--indigo));
+      box-shadow: 0 0 0 4px rgba(255,255,255,.6), 0 0 20px rgba(99,102,241,.5);
+    }
+    .tl-item .year {
+      font-size: .72rem; font-weight: 700;
+      color: var(--cyan); letter-spacing: .15em;
+      text-transform: uppercase; margin-bottom: .4rem;
+    }
+    .tl-item h3 { font-size: 1.05rem; font-weight: 700; color: var(--blue1); margin-bottom: .5rem; }
+    .tl-item p { font-size: .88rem; color: var(--text-mid); line-height: 1.75; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 3.5rem 2rem;
+      position: relative;
+      z-index: 1;
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(28px);
+      border-top: 1.5px solid rgba(255,255,255,.5);
+    }
+    footer .footer-logo {
+      font-size: 1.6rem; font-weight: 900;
+      background: linear-gradient(135deg, var(--blue1), var(--indigo));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: .8rem;
+    }
+    footer p { font-size: .85rem; color: var(--text-light); }
+    footer span { color: var(--indigo); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: rgba(200,210,255,.2); }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(var(--blue1), var(--indigo)); border-radius: 999px; }
+
+    /* ── 특징 그리드 ── */
+    .features-section { background: transparent; }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .feature-card {
+      border-radius: 1.8rem;
+      padding: 2rem 1.8rem;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .feature-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(80,120,255,.2), inset 0 1px 0 rgba(255,255,255,.8); }
+    .feature-card .fc-icon { font-size: 2rem; margin-bottom: .8rem; }
+    .feature-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--blue1); margin-bottom: .6rem; }
+    .feature-card p { font-size: .88rem; color: var(--text-mid); line-height: 1.75; }
+
+    /* ── 아이돌 시스템 ── */
+    .idol-section { background: transparent; }
+    .idol-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+    .idol-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.4rem;
+      border-radius: 1.5rem;
+      padding: 1.6rem 1.8rem;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .idol-step:hover { transform: translateX(6px); box-shadow: 0 16px 48px rgba(80,120,255,.18), inset 0 1px 0 rgba(255,255,255,.8); }
+    .idol-step .step-num {
+      flex-shrink: 0;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue1), var(--indigo));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; font-weight: 900; color: #fff;
+      box-shadow: 0 4px 16px rgba(99,102,241,.4);
+    }
+    .idol-step .step-body h3 { font-size: 1rem; font-weight: 700; color: var(--blue1); margin-bottom: .35rem; }
+    .idol-step .step-body p { font-size: .87rem; color: var(--text-mid); line-height: 1.7; }
+
+    /* ── 글로벌 확산 ── */
+    .global-section { background: transparent; }
+    .global-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .global-card {
+      border-radius: 1.8rem;
+      padding: 2rem 1.8rem;
+      text-align: center;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .global-card:hover { transform: translateY(-8px); box-shadow: 0 20px 56px rgba(80,120,255,.2), inset 0 1px 0 rgba(255,255,255,.8); }
+    .global-card .gc-emoji { font-size: 2.5rem; margin-bottom: .8rem; }
+    .global-card h3 { font-size: 1rem; font-weight: 700; color: var(--blue1); margin-bottom: .5rem; }
+    .global-card p { font-size: .87rem; color: var(--text-mid); line-height: 1.7; }
+
+    /* ── 경제 섹션 ── */
+    .economy-section { background: transparent; }
+    .economy-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .eco-card {
+      border-radius: 1.8rem;
+      padding: 2rem 1.8rem;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .eco-card:hover { transform: translateY(-8px); box-shadow: 0 20px 56px rgba(80,120,255,.2), inset 0 1px 0 rgba(255,255,255,.8); }
+    .eco-card .eco-num {
+      font-size: 2.2rem; font-weight: 900;
+      background: linear-gradient(135deg, var(--cyan), var(--blue1));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: .4rem;
+    }
+    .eco-card h3 { font-size: 1rem; font-weight: 700; color: var(--text-dark); margin-bottom: .5rem; }
+    .eco-card p { font-size: .87rem; color: var(--text-mid); line-height: 1.7; }
+
+    /* ── 장르 배지 ── */
+    .genre-section { background: transparent; }
+    .genre-cloud {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: .8rem;
+      max-width: 800px; margin: 0 auto;
+    }
+    .genre-badge {
+      padding: .55rem 1.3rem;
+      border-radius: 999px;
+      font-size: .9rem; font-weight: 600;
+      cursor: default;
+      transition: transform .2s, box-shadow .2s;
+      border: 1.5px solid rgba(255,255,255,.6);
+      box-shadow: 0 4px 16px rgba(80,120,255,.12), inset 0 1px 0 rgba(255,255,255,.7);
+    }
+    .genre-badge:hover { transform: translateY(-4px) scale(1.05); box-shadow: 0 8px 28px rgba(80,120,255,.25); }
+    .genre-badge.size-lg { font-size: 1.05rem; padding: .65rem 1.6rem; }
+    .genre-badge.size-sm { font-size: .78rem; padding: .45rem 1rem; }
+
+    /* ── 뉴스 섹션 ── */
+    .news-section { background: transparent; }
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .news-card {
+      border-radius: 1.8rem;
+      padding: 1.8rem 2rem;
+      transition: transform .3s, box-shadow .3s;
+      display: flex;
+      flex-direction: column;
+      gap: .8rem;
+    }
+    .news-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(80,120,255,.22), inset 0 1px 0 rgba(255,255,255,.8); }
+    .news-card .news-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: .3rem .85rem;
+      border-radius: 999px;
+      width: fit-content;
+    }
+    .news-card .news-tag.bts   { background: rgba(99,102,241,.15); color: var(--indigo); border: 1px solid rgba(99,102,241,.3); }
+    .news-card .news-tag.bp    { background: rgba(236,72,153,.12); color: #db2777;       border: 1px solid rgba(236,72,153,.25); }
+    .news-card .news-tag.aespa { background: rgba(6,182,212,.12);  color: var(--cyan);   border: 1px solid rgba(6,182,212,.25); }
+    .news-card .news-tag.nj    { background: rgba(34,197,94,.12);  color: #16a34a;       border: 1px solid rgba(34,197,94,.25); }
+    .news-card .news-tag.trend { background: rgba(245,158,11,.12); color: #d97706;       border: 1px solid rgba(245,158,11,.25); }
+    .news-card .news-date { font-size: .75rem; color: var(--text-light); }
+    .news-card h3 { font-size: 1rem; font-weight: 700; color: var(--text-dark); line-height: 1.4; }
+    .news-card p  { font-size: .86rem; color: var(--text-mid); line-height: 1.72; flex: 1; }
+    .news-card .news-source {
+      font-size: .72rem;
+      color: var(--indigo);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 배경 구체 -->
+  <div class="bg-orb o1"></div>
+  <div class="bg-orb o2"></div>
+  <div class="bg-orb o3"></div>
+  <div class="bg-orb o4"></div>
+
+  <!-- ── HERO ── -->
+  <header class="hero" id="home">
+    <!-- 태극기 -->
+    <div class="flag-container">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/0/09/Flag_of_South_Korea.svg"
+        alt="대한민국 국기 태극기"
+        width="110"
+      />
+    </div>
+
+    <div class="badge">✦ Korean Wave · 한류 · K-WAVE</div>
+    <h1>K-POP</h1>
+    <p class="hero-sub">THE WORLD'S BIGGEST MUSIC WAVE</p>
+
+    <div class="hero-desc glass">
+      <p>전 세계를 사로잡은 한국 팝 음악. 중독성 있는 멜로디, 화려한 퍼포먼스, 그리고 강렬한 팬덤 문화까지 — K-POP의 세계로 빠져보세요.</p>
+    </div>
+
+    <div class="hero-btns">
+      <a href="#about" class="btn-primary">더 알아보기 →</a>
+      <a href="#artists" class="btn-outline">아티스트 보기</a>
+    </div>
+    <div class="scroll-hint">SCROLL</div>
+  </header>
+
+  <!-- ── ABOUT ── -->
+  <section class="about" id="about">
+    <p class="section-label">✦ About K-POP</p>
+    <h2 class="section-title">K-POP이란? <span>What is K-POP?</span></h2>
+    <div class="about-grid">
+      <div class="about-card glass">
+        <span class="icon">🎵</span>
+        <h3>음악</h3>
+        <p>팝, 힙합, R&B, 전자음악 등 다양한 장르가 융합된 독창적인 사운드로 전 세계 청중을 매료시킵니다.</p>
+      </div>
+      <div class="about-card glass">
+        <span class="icon">💃</span>
+        <h3>퍼포먼스</h3>
+        <p>칼군무와 화려한 안무로 대표되는 무대 퍼포먼스는 K-POP 아이돌의 가장 큰 특징 중 하나입니다.</p>
+      </div>
+      <div class="about-card glass">
+        <span class="icon">🌏</span>
+        <h3>한류 (韓流)</h3>
+        <p>아시아를 넘어 미국, 유럽, 남미 등 전 세계로 뻗어나간 한국 대중문화 열풍을 '한류'라 부릅니다.</p>
+      </div>
+      <div class="about-card glass">
+        <span class="icon">🤝</span>
+        <h3>팬덤</h3>
+        <p>강력한 팬 커뮤니티 문화는 K-POP 산업의 핵심 동력입니다. 팬들은 전 세계적으로 조직적으로 활동합니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── STATS ── -->
+  <section class="stats-section">
+    <div class="stats-grid">
+      <div class="stat-item glass">
+        <div class="num">100+</div>
+        <div class="label">활동 중인 아이돌 그룹</div>
+      </div>
+      <div class="stat-item glass">
+        <div class="num">$12B</div>
+        <div class="label">연간 산업 규모</div>
+      </div>
+      <div class="stat-item glass">
+        <div class="num">180+</div>
+        <div class="label">진출 국가 수</div>
+      </div>
+      <div class="stat-item glass">
+        <div class="num">1위</div>
+        <div class="label">BTS 빌보드 Hot 100</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ARTISTS ── -->
+  <section class="artists" id="artists">
+    <p class="section-label">✦ Representative Artists</p>
+    <h2 class="section-title">대표 <span>아티스트</span></h2>
+    <div class="artist-grid">
+      <div class="artist-card glass">
+        <div class="img-wrap">
+          <img class="card-img" src="https://upload.wikimedia.org/wikipedia/commons/0/09/BTS_at_the_White_House_on_May_31%2C_2022_04.jpg" alt="BTS" loading="lazy" />
+        </div>
+        <div class="info">
+          <h3>BTS</h3>
+          <p>빅히트 · 2013년 데뷔</p>
+          <span class="tag">ARMY</span>
+        </div>
+      </div>
+      <div class="artist-card glass">
+        <div class="img-wrap">
+          <img class="card-img" src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Blackpink_Pink_Carpet_Event_4.jpg" alt="BLACKPINK" loading="lazy" />
+        </div>
+        <div class="info">
+          <h3>BLACKPINK</h3>
+          <p>YG · 2016년 데뷔</p>
+          <span class="tag">BLINK</span>
+        </div>
+      </div>
+      <div class="artist-card glass">
+        <div class="img-wrap" style="background:linear-gradient(135deg,rgba(147,197,253,.5),rgba(103,232,249,.5));display:flex;align-items:center;justify-content:center;font-size:4rem;">
+          ✨
+        </div>
+        <div class="info">
+          <h3>EXO</h3>
+          <p>SM · 2012년 데뷔</p>
+          <span class="tag">EXO-L</span>
+        </div>
+      </div>
+      <div class="artist-card glass">
+        <div class="img-wrap">
+          <img class="card-img" src="https://upload.wikimedia.org/wikipedia/commons/8/8f/20241115_aespa_TikTok_Awards_Korea_2024_Red_Carpet.jpg" alt="aespa" loading="lazy" />
+        </div>
+        <div class="info">
+          <h3>aespa</h3>
+          <p>SM · 2020년 데뷔</p>
+          <span class="tag">MY</span>
+        </div>
+      </div>
+      <div class="artist-card glass">
+        <div class="img-wrap">
+          <img class="card-img" src="https://upload.wikimedia.org/wikipedia/commons/5/50/Stray_Kids_at_the_40th_Golden_Disc_Awards%2C_January_10%2C_2026_%281%29.png" alt="Stray Kids" loading="lazy" />
+        </div>
+        <div class="info">
+          <h3>Stray Kids</h3>
+          <p>JYP · 2018년 데뷔</p>
+          <span class="tag">STAY</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TIMELINE ── -->
+  <section class="timeline-section" id="history">
+    <p class="section-label">✦ History</p>
+    <h2 class="section-title">K-POP의 <span>역사</span></h2>
+    <div class="timeline">
+      <div class="tl-item glass">
+        <div class="year">1990s</div>
+        <h3>1세대 아이돌의 탄생</h3>
+        <p>서태지와 아이들, H.O.T., S.E.S. 등이 등장하며 K-POP 아이돌 문화의 토대를 마련했습니다.</p>
+      </div>
+      <div class="tl-item glass">
+        <div class="year">2000s</div>
+        <h3>아시아를 넘어서</h3>
+        <p>동방신기, 소녀시대, 빅뱅 등 2세대 아이돌이 한류 열풍을 일으키며 아시아 전역으로 영향력을 넓혔습니다.</p>
+      </div>
+      <div class="tl-item glass">
+        <div class="year">2010s</div>
+        <h3>글로벌 무대로</h3>
+        <p>싸이의 '강남스타일'이 유튜브 최초 10억 뷰를 돌파하고, BTS가 빌보드를 석권하며 세계 무대에 우뚝 섰습니다.</p>
+      </div>
+      <div class="tl-item glass">
+        <div class="year">2020s</div>
+        <h3>세계 주류 문화로</h3>
+        <p>BLACKPINK의 코첼라 헤드라이너, NewJeans·aespa 등 4세대 아이돌 활약으로 K-POP은 세계 주류 음악이 되었습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 특징 ── -->
+  <section class="features-section" id="features">
+    <p class="section-label">✦ Characteristics</p>
+    <h2 class="section-title">K-POP의 <span>특징</span></h2>
+    <div class="features-grid">
+      <div class="feature-card glass">
+        <div class="fc-icon">🕺</div>
+        <h3>칼군무 퍼포먼스</h3>
+        <p>서태지와 아이들 이후 정립된 '포인트 안무'와 멤버 전원이 일치하는 칼군무는 K-POP 무대의 시각적 핵심입니다. 수년간의 연습을 통해 완성된 동작의 일치는 세계 팬들을 매료시킵니다.</p>
+      </div>
+      <div class="feature-card glass">
+        <div class="fc-icon">🎼</div>
+        <h3>장르 융합 사운드</h3>
+        <p>팝, 록, 힙합, R&B, 전자 음악 등 다양한 서구 장르를 한국적 감성과 결합해 독창적인 사운드를 만듭니다. 외국인 작곡가·안무가와의 협업도 활발하게 이루어집니다.</p>
+      </div>
+      <div class="feature-card glass">
+        <div class="fc-icon">👗</div>
+        <h3>패션 & 글로벌 앰버서더</h3>
+        <p>K-POP 아티스트들은 샤넬, 디올, 루이비통 등 명품 브랜드의 글로벌 앰버서더로 활동하며 전 세계 패션·뷰티 트렌드에 큰 영향을 미치고 있습니다.</p>
+      </div>
+      <div class="feature-card glass">
+        <div class="fc-icon">🌐</div>
+        <h3>글로벌 제작 시스템</h3>
+        <p>외국인 멤버 영입과 다국어(영어 포함) 가사 사용이 보편화되어 있으며, 소셜 미디어를 통한 팬과의 소통이 K-POP 산업의 핵심 전략으로 자리 잡았습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 아이돌 시스템 ── -->
+  <section class="idol-section" id="idol-system">
+    <p class="section-label">✦ Idol Training System</p>
+    <h2 class="section-title">아이돌 <span>연습생 시스템</span></h2>
+    <div class="idol-steps">
+      <div class="idol-step glass">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>인재 발굴 (Scouting)</h3>
+          <p>기획사는 오디션, 길거리 캐스팅, SNS 등을 통해 잠재력 있는 인재를 전국·해외에서 발굴합니다. 어린 나이부터 연습생으로 입사하는 경우가 많습니다.</p>
+        </div>
+      </div>
+      <div class="idol-step glass">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>체계적 교육 (Training)</h3>
+          <p>보컬, 댄스, 랩, 외국어(영어·일본어·중국어), 연기 등 수년간의 집중 훈련을 받습니다. 기획사의 철저한 관리 하에 스타로 '인큐베이팅'됩니다.</p>
+        </div>
+      </div>
+      <div class="idol-step glass">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>통합 기획 (Concept & Branding)</h3>
+          <p>데뷔 전 컨셉, 비주얼, 음악 스타일이 하나의 세계관으로 통합되어 기획됩니다. 앨범, 뮤직비디오, 퍼포먼스가 하나의 예술 작품처럼 제작됩니다.</p>
+        </div>
+      </div>
+      <div class="idol-step glass">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h3>팬덤 형성 (Fandom Building)</h3>
+          <p>데뷔 후 팬 사인회, 브이라이브, 유튜브 콘텐츠 등으로 강력한 팬덤을 육성합니다. 팬덤은 단순 소비자를 넘어 적극적인 홍보·응원 공동체로 기능합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 장르 ── -->
+  <section class="genre-section" id="genres">
+    <p class="section-label">✦ Genres & Styles</p>
+    <h2 class="section-title">K-POP <span>장르 & 스타일</span></h2>
+    <div class="genre-cloud">
+      <span class="genre-badge glass size-lg">🎵 아이돌 팝</span>
+      <span class="genre-badge glass size-lg">🎤 힙합</span>
+      <span class="genre-badge glass">🎸 K-인디</span>
+      <span class="genre-badge glass size-lg">🎹 R&B / 소울</span>
+      <span class="genre-badge glass">⚡ EDM / 일렉트로닉</span>
+      <span class="genre-badge glass size-sm">🥁 트로트</span>
+      <span class="genre-badge glass">🌸 조선팝 (국악 융합)</span>
+      <span class="genre-badge glass size-lg">💃 댄스 팝</span>
+      <span class="genre-badge glass size-sm">🌙 미드나잇 팝</span>
+      <span class="genre-badge glass">🔥 걸크러시</span>
+      <span class="genre-badge glass size-sm">🌊 드림팝</span>
+      <span class="genre-badge glass">✨ 버추얼 아이돌</span>
+    </div>
+  </section>
+
+  <!-- ── 글로벌 확산 ── -->
+  <section class="global-section" id="global">
+    <p class="section-label">✦ Global Spread</p>
+    <h2 class="section-title">세계적 <span>확산</span></h2>
+    <div class="global-grid">
+      <div class="global-card glass">
+        <div class="gc-emoji">🎬</div>
+        <h3>유튜브 & 소셜미디어</h3>
+        <p>BTS·BLACKPINK 등의 뮤직비디오가 유튜브에서 수십억 회 조회수를 기록, 디지털 플랫폼을 통해 미주·유럽·중동·라틴아메리카로 확산되었습니다.</p>
+      </div>
+      <div class="global-card glass">
+        <div class="gc-emoji">📊</div>
+        <h3>빌보드 차트 석권</h3>
+        <p>싸이 '강남스타일' Hot 100 2위, BTS 6곡 연속 Hot 100 1위 달성. 한국 가수 최초의 빌보드 메인 차트 정상 등극이 K-POP의 글로벌 위상을 증명했습니다.</p>
+      </div>
+      <div class="global-card glass">
+        <div class="gc-emoji">🌍</div>
+        <h3>현지화 K-POP 3.0</h3>
+        <p>NiziU, XG처럼 한국인 멤버 없이도 K-POP 시스템과 스타일을 따르는 모델이 확산 중입니다. K-POP은 이제 국적을 초월한 글로벌 음악 문화입니다.</p>
+      </div>
+      <div class="global-card glass">
+        <div class="gc-emoji">🤝</div>
+        <h3>한류 시너지</h3>
+        <p>K-드라마·K-뷰티·K-푸드와 결합하여 한국 문화 전반의 소비를 촉진합니다. K-POP 팬덤이 한국어 학습, 한국 여행, 한국 제품 구매로 이어지는 선순환이 형성됩니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 경제적 영향 ── -->
+  <section class="economy-section" id="economy">
+    <p class="section-label">✦ Economic Impact</p>
+    <h2 class="section-title">경제적 <span>영향</span></h2>
+    <div class="economy-wrap">
+      <div class="eco-card glass">
+        <div class="eco-num">1,500만+</div>
+        <h3>BTS 앨범 판매량 기록</h3>
+        <p>2022년 BTS는 역대 최다 앨범 판매량 1,500만 장 이상을 갱신했습니다. 스트리밍 시대에도 불구하고 포토카드·굿즈가 포함된 피지컬 앨범 판매가 폭발적으로 증가했습니다.</p>
+      </div>
+      <div class="eco-card glass">
+        <div class="eco-num">460만 장</div>
+        <h3>세븐틴 4일 판매 기록</h3>
+        <p>세븐틴은 미니 11집으로 발매 4일 만에 460만 장을 판매하는 경이로운 기록을 세웠습니다. K-POP 피지컬 앨범 시장의 성장세를 보여주는 대표적 사례입니다.</p>
+      </div>
+      <div class="eco-card glass">
+        <div class="eco-num">$12B+</div>
+        <h3>연간 산업 규모</h3>
+        <p>K-POP은 매년 수조 원 규모의 부가가치를 창출하며 한국 엔터테인먼트 산업을 국가 핵심 수출 산업으로 성장시켰습니다. 콘서트·MD·스트리밍 등 다각화된 수익 구조를 갖추고 있습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 최신 뉴스 ── -->
+  <section class="news-section" id="news">
+    <p class="section-label">✦ Latest News · 2026</p>
+    <h2 class="section-title">최신 <span>K-POP 뉴스</span></h2>
+    <div class="news-grid">
+
+      <div class="news-card glass">
+        <span class="news-tag bts">📌 BTS</span>
+        <p class="news-date">2026년 4월</p>
+        <h3>BTS, 4년 만의 완전체 컴백 — 월드투어 개시</h3>
+        <p>2025년 6월 병역을 모두 마친 BTS가 4년 만에 완전체로 컴백했습니다. 단체 앱범 <em>Arirang</em>(2026)을 발표하며 히트 싱글 “Swim”이 전 세계 차트를 잡았습니다. 4월 9일 고양 콘서트를 시작으로 월드투어도 진행 중입니다.</p>
+        <span class="news-source">→ Wikipedia / thelesabre.com</span>
+      </div>
+
+      <div class="news-card glass">
+        <span class="news-tag bts">📌 BTS</span>
+        <p class="news-date">2026년 4월 7일</p>
+        <h3>Run BTS! 2.0 리부트 — 첫 에피소드 공개</h3>
+        <p>인기 리얼리티 프로그램 <em>Run BTS!</em>가 2.0으로 리부트되어 4월 7일 첫 에피소드가 공개되었습니다. 멤버 전원 복규 후 첫 콘텐츠로 관심이 집중되고 있으며, ARMY들의 열려한 호응을 얻고 있습니다.</p>
+        <span class="news-source">→ mid-day.com</span>
+      </div>
+
+      <div class="news-card glass">
+        <span class="news-tag bp">📌 BLACKPINK</span>
+        <p class="news-date">2026년 4월 칸즈</p>
+        <h3>지수, 칸 국제 시리즈 페스티벌 신인상 수상</h3>
+        <p>BLACKPINK의 지수가 2026 칸즈 국제 시리즈 페스티벌에서 “Madame Figaro Rising Star Award”를 수상했습니다. Netflix 시리즈 <em>Boyfriend on Demand</em>에서의 연기로 세계적 주목을 받았습니다.</p>
+        <span class="news-source">→ koreaherald.com</span>
+      </div>
+
+      <div class="news-card glass">
+        <span class="news-tag bp">📌 BLACKPINK</span>
+        <p class="news-date">2026년 상반기</p>
+        <h3>Deadline 월드 투어 종료 — 10주년 프로젝트 기대감</h3>
+        <p>BLACKPINK의 <em>Deadline</em> 월드 투어가 2026년 상반기 마무리되었습니다. 듰 해 데빌 10주년을 알맞아 새로운 그룹 프로젝트를 향한 팬들의 기대가 부품되고 있습니다. 파리의 제니는 7월 마드쿨 페스튰벌 출연 예정입니다.</p>
+        <span class="news-source">→ trip.com / kpopofficial.com</span>
+      </div>
+
+      <div class="news-card glass">
+        <span class="news-tag aespa">📌 aespa</span>
+        <p class="news-date">2026년 5월 29일</p>
+        <h3>aespa, 두 번째 정규앞범 <em>LEMONADE</em> 컴백 예정</h3>
+        <p>aespa가 2026년 5월 29일 두 번째 정규앞범 <em>LEMONADE</em> 발매를 예고했습니다. 이어 8월 7일 서울을 필두로 모두 25개 지역을 어우는 월드투어 “SYNK”도 예정되어 있습니다.</p>
+        <span class="news-source">→ chosun.com / exclaim.ca</span>
+      </div>
+
+      <div class="news-card glass">
+        <span class="news-tag nj">📌 NewJeans</span>
+        <p class="news-date">2026년 4월 21일</p>
+        <h3>NewJeans, 6개월 만에 SNS 재개 — 컴백 가능성 관심집중</h3>
+        <p>NewJeans가 6개월만에 소셜미디어에 멤버 햊수이의 생일 게시물을 올리며 제시행보를 보였습니다. 멤버들이 덴마크 코펜하겐에서 목격됨에 따라 2026년 하반기 컴백 기대감이 켜지고 있습니다.</p>
+        <span class="news-source">→ koreatimes.co.kr</span>
+      </div>
+
+      <div class="news-card glass">
+        <span class="news-tag trend">📌 트렌드</span>
+        <p class="news-date">2025년 상반기</p>
+        <h3>5세대 아이돌 시대 — AI 멤버 & VR 콘서트</h3>
+        <p>TWS, NCT WISH 등 5세대 보이그룹들이 AI 가상 멤버 도입과 VR 콘서트 포맷을 적극 활용하며 새로운 시장을 형성하고 있습니다. 하이브·SM·JYP·YG 등 대형 기획사들은 AI 기술 도입으로 경쟁력을 강화하고 있습니다.</p>
+        <span class="news-source">→ newsflix.co.kr</span>
+      </div>
+
+      <div class="news-card glass">
+        <span class="news-tag trend">📌 트렌드</span>
+        <p class="news-date">2025–2026년</p>
+        <h3>K-POP 3.0 — 비한국인 그룹 NiziU · XG 부상</h3>
+        <p>NiziU와 XG이 한국인 멤버 없이도 K-POP 시스템과 스타일을 보여주며 글로벌 시장에서 클 인기를 돈다예있습니다. K-POP은 이제 국적을 초월한 플랫폼으로 진화하고 있습니다.</p>
+        <span class="news-source">→ bgzt.co.kr</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-logo">K-POP</div>
+    <p>내용 출처: <a href="https://ko.wikipedia.org/wiki/K-pop" target="_blank" style="color:var(--indigo);text-decoration:none;">한국어 위키피디아 K-pop</a> · Made with <span>♥</span> for K-POP fans worldwide · © 2025 Korean Wave</p>
+  </footer>
+
+</body>
+</html>
